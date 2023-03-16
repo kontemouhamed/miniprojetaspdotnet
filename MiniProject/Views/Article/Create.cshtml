@@ -1,0 +1,53 @@
+@model MiniProject.Models.Article
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Article</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReferenceArticle" class="control-label"></label>
+                <input asp-for="ReferenceArticle" class="form-control" />
+                <span asp-validation-for="ReferenceArticle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label"></label>
+                <input asp-for="Prix" class="form-control" />
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label custom-file-label"></label>
+                <input asp-for="ImageFile" class="form-control custom-file-input"
+                       onchange="document.getElementById('ImageFilePrv').src = window.URL.createObjectURL(this.files[0])"/>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                <img id="ImageFilePrv" src="" alt="Article Image" width="200" height="200" style="border:1px; margin-top:20px; margin-left:120px" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
