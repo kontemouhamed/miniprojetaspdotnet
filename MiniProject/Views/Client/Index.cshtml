@@ -9,45 +9,39 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroCLient)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prenom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Adresse)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroCLient)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prenom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adresse)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="w-full mt-6">
+    <p class="text-xl pb-3 flex items-center">
+        <i class="fas fa-list mr-3"></i> Table Example
+    </p>
+    <div class="bg-white overflow-auto">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"> @Html.DisplayNameFor(model => model.NumeroCLient)</th>
+                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">@Html.DisplayNameFor(model => model.Prenom)  @Html.DisplayNameFor(model => model.Nom)</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">@Html.DisplayNameFor(model => model.Adresse) </th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Action</td>
+</tr>
+            </thead>
+            <tbody class="text-gray-700">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="w-1/3 text-left py-3 px-4">@Html.DisplayFor(modelItem => item.NumeroCLient)</td>
+                        <td class="w-1/3 text-left py-3 px-4">@Html.DisplayFor(modelItem => item.Prenom) @Html.DisplayFor(modelItem => item.Nom)</td>
+                        <td class="text-left py-3 px-4">@Html.DisplayFor(modelItem => item.Adresse)</td>
+                        <td class="text-left py-3 px-4">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
